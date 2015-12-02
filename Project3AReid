@@ -182,9 +182,10 @@ void table( float east, float north, float west, float south ) {
 void bird() {
   if (birdX > width) {
     birdX = 0; birdmove=false; }
-  fill(0);
+  fill(255);
   ellipse(birdX,100,35,15);
-  ellipse(birdX+16,94,15,15);
+  ellipse(birdX+16,94,30,15);
+
   if (count/30 % 2 == 0) {
     triangle(birdX-10,97, birdX,77, birdX+10,97); }
     else {
@@ -194,7 +195,7 @@ void bird() {
   
 void bomb() {
   if (bombdrop == true) {
-    fill(255,255,255);
+    fill(0,0,0);
     ellipse(birdX-10, bombY, 10,10);
     bombY *= bombDY;
   }
@@ -207,12 +208,21 @@ void drop() {
 }
 
 // Shows rat
-void rat() {
-  fill(255);
-  ratX+=4;
-  if (ratShow == true) {
-    if (frameCount % 30 > 15) {
-      //these are all of the rat's other body parts.
+   void rat() {
+    fill(255);
+    ratX += 4;
+    if (ratShow == true) {
+     if (count/30 % 15 == 0) {
+      line(ratX-5, ratY-5, ratX+5, ratY+5);   
+      line(ratX-15, ratY-5, ratX-5, ratY+5);  
+      line(ratX-30, ratY-5, ratX-18, ratY+5); 
+      line(ratX-45, ratY-5, ratX-31, ratY+5);
+      } else {
+      line(ratX-5, ratY+5, ratX+5, ratY-5);   
+      line(ratX-15, ratY+5, ratX-5, ratY-5);
+      line(ratX-30, ratY+5, ratX-18, ratY-5);
+      line(ratX-45, ratY+5, ratX-31, ratY-5);
+      
       fill(0); 
       ellipse(ratX-22, ratY-15, 60, 30);
       ellipse(ratX, ratY-20, 30, 30);
@@ -223,34 +233,12 @@ void rat() {
       ellipse(ratX+26, ratY-20, 7, 7);        
       fill(255);
       arc(ratX+8.5, ratY-25, 7, 7, 0, PI); 
-      strokeWeight(5);   
-      //these are the rat's legs
-      line(ratX-5, ratY-5, ratX+5, ratY+5);   
-      line(ratX-15, ratY-5, ratX-5, ratY+5);  
-      line(ratX-30, ratY-5, ratX-18, ratY+5); 
-      line(ratX-45, ratY-5, ratX-31, ratY+5); 
-  } else {
-      //these are the second frame of the other rat's body parts
-      fill(0);
-      ellipse(ratX-22, ratY-15, 60, 30); 
-      ellipse(ratX, ratY-20, 30, 30);
-      ellipse(ratX+10, ratY-20, 30, 20);
-      ellipse(ratX-5, ratY-30, 30, 30);
-      fill(255);
-      arc(ratX+8.5, ratY-25, 7, 7, 0, PI); 
-      fill(252, 106, 202);
-      line(ratX-80, ratY-20, ratX-40, ratY-20);
-      fill(252, 106, 202);
-      ellipse(ratX+26, ratY-20, 7, 7);     
-      strokeWeight(5);
-     //these are the second frames for the rat's legs
-      line(ratX-5, ratY+5, ratX+5, ratY-5);   
-      line(ratX-15, ratY+5, ratX-5, ratY-5);
-      line(ratX-30, ratY+5, ratX-18, ratY-5);
-      line(ratX-45, ratY+5, ratX-31, ratY-5);
+      strokeWeight(5);  
+      ratX += ratDX;
+ 
       
-    }
-  }
+      }
+      
   //resets rat's position to left side of screen
   if (ratX > width) {
     ratX = 1;
@@ -263,7 +251,7 @@ void rat() {
   if ( dist(e.x,e.y, ratX,ratY) < 10) { ratX += 15; e.dx=0; e.dy=0; score -= 10; }
   if ( dist(cue.x,cue.y, ratX,ratY) < 10) { ratX += 15; cue.dx=0; cue.dy=0; score -= 10; }
 }
-
+   }
 // Messages
 void messages() {
   fill(0);
