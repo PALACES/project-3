@@ -69,6 +69,7 @@ void reset() {
   wall=true;
   ratX=left;
   ratShow=false;
+  ratY=height - 100;
   tableRed=150; tableGreen=250; tableBlue=150;
   
   // Ball spawn position
@@ -208,21 +209,12 @@ void drop() {
 }
 
 // Shows rat
-   void rat() {
-    fill(255);
-    ratX += 4;
-    if (ratShow == true) {
-     if (count/30 % 15 == 0) {
-      line(ratX-5, ratY-5, ratX+5, ratY+5);   
-      line(ratX-15, ratY-5, ratX-5, ratY+5);  
-      line(ratX-30, ratY-5, ratX-18, ratY+5); 
-      line(ratX-45, ratY-5, ratX-31, ratY+5);
-      } else {
-      line(ratX-5, ratY+5, ratX+5, ratY-5);   
-      line(ratX-15, ratY+5, ratX-5, ratY-5);
-      line(ratX-30, ratY+5, ratX-18, ratY-5);
-      line(ratX-45, ratY+5, ratX-31, ratY-5);
-      
+void rat() {
+  fill(255);
+  ratX+=4;
+  if (ratShow == true) {
+    if (count % 30 > 15) {
+      //these are all of the rat's other body parts.
       fill(0); 
       ellipse(ratX-22, ratY-15, 60, 30);
       ellipse(ratX, ratY-20, 30, 30);
@@ -233,12 +225,34 @@ void drop() {
       ellipse(ratX+26, ratY-20, 7, 7);        
       fill(255);
       arc(ratX+8.5, ratY-25, 7, 7, 0, PI); 
-      strokeWeight(5);  
-      ratX += ratDX;
- 
-      
-      }
-      
+      strokeWeight(5);   
+      //these are the rat's legs
+      line(ratX-5, ratY-5, ratX+5, ratY+5);   
+      line(ratX-15, ratY-5, ratX-5, ratY+5);  
+      line(ratX-30, ratY-5, ratX-18, ratY+5); 
+      line(ratX-45, ratY-5, ratX-31, ratY+5); 
+  } else {
+      //these are the second frame of the other rat's body parts
+      fill(0);
+      ellipse(ratX-22, ratY-15, 60, 30); 
+      ellipse(ratX, ratY-20, 30, 30);
+      ellipse(ratX+10, ratY-20, 30, 20);
+      ellipse(ratX-5, ratY-30, 30, 30);
+      fill(255);
+      arc(ratX+8.5, ratY-25, 7, 7, 0, PI); 
+      fill(252, 106, 202);
+      line(ratX-80, ratY-20, ratX-40, ratY-20);
+      fill(252, 106, 202);
+      ellipse(ratX+26, ratY-20, 7, 7);     
+      strokeWeight(5);
+     //these are the second frames for the rat's legs
+      line(ratX-5, ratY+5, ratX+5, ratY-5);   
+      line(ratX-15, ratY+5, ratX-5, ratY-5);
+      line(ratX-30, ratY+5, ratX-18, ratY-5);
+      line(ratX-45, ratY+5, ratX-31, ratY-5);
+     ratX = ratX++;
+    }
+  }
   //resets rat's position to left side of screen
   if (ratX > width) {
     ratX = 1;
@@ -250,7 +264,7 @@ void drop() {
   if ( dist(d.x,d.y, ratX,ratY) < 10) { ratX += 15; d.dx=0; d.dy=0; score -= 10; }
   if ( dist(e.x,e.y, ratX,ratY) < 10) { ratX += 15; e.dx=0; e.dy=0; score -= 10; }
   if ( dist(cue.x,cue.y, ratX,ratY) < 10) { ratX += 15; cue.dx=0; cue.dy=0; score -= 10; }
-}
+
    }
 // Messages
 void messages() {
