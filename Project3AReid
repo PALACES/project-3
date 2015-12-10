@@ -39,15 +39,15 @@ void setup() {
     middle2 = (width/2);
     
     a = new Ball();
-    a.r= 255; a.name= "1";
+    a.r= 131;a.g=183;a.b=224; a.name= "1";
     b = new Ball();
-    b.g= 255; b.name= "2";
+    b.r=209;b.g= 173;b.b=208; b.name= "2";
     c = new Ball();
-    c.g= 255; c.b= 255; c.name= "3";
+    c.r=224;c.g= 88; c.b= 109; c.name= "3";
     d = new Ball();
-    d.r= 255; d.g=255; d.name= "4";
+    d.r= 188; d.g=176;d.b=165; d.name= "4";
     e = new Ball();
-    e.r= 200; e.b=255; e.name= "5";
+    e.r= 167;e.g=227; e.b=212; e.name= "5";
     cue = new Ball();
     cue.r= 255; cue.g= 255; cue.b= 255;
     
