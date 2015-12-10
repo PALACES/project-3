@@ -290,7 +290,7 @@ void grass() {
   }
 }
 
-// Clouds (debugging)
+// Clouds 
 void clouds() {
   for (int i=100; i<width; i += 100) {
     int r = 130;
